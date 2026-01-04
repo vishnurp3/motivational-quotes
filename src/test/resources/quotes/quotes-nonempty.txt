@@ -1,0 +1,6 @@
+# motivational quotes
+Small steps every day.
+Discipline beats motivation.
+
+# keep comments and blank lines ignored
+Focus on the next action.
