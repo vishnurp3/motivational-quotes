@@ -64,7 +64,6 @@ final class QuoteServiceIntegrationTest {
 
             IllegalStateException ex = assertThrows(IllegalStateException.class, service::randomMotivationalQuote);
 
-            // message includes repository description; keep assertion strict and meaningful
             assertEquals(
                     "No motivational quote available from repository: classpath:quotes/quotes-empty.txt",
                     ex.getMessage()
@@ -143,10 +142,6 @@ final class QuoteServiceIntegrationTest {
         }
     }
 
-    /**
-     * Deterministic test double for integration tests.
-     * Keeps tests stable, fast, and offline.
-     */
     private static final class FakeAiTextClient implements AiTextClient {
 
         private final AtomicInteger calls = new AtomicInteger(0);
