@@ -52,7 +52,11 @@ The caller interacts only with a single service interface and is unaware of whet
 
 * Java 21
 * Maven
-* A valid ChatGPT API key
+* A valid ChatGPT API key (optional - app works without it using fallback quotes)
+
+**OR**
+
+* Docker (alternative to Java/Maven)
 
 ---
 
@@ -71,11 +75,33 @@ If the key is missing or invalid, the fallback mechanism will be triggered at ru
 
 ## Running the application
 
+### With Maven
+
 This is a standard Maven-based Java project.
 
+```bash
+mvn compile exec:java
+```
+
 * To run unit and integration tests, use your usual Maven test workflow.
-* To invoke the ChatGPT API and see the full flow in action, run the `App` class.
 * Quotes used for fallback are stored in a text file on the classpath (`quotes.txt`).
+
+### With Docker
+
+Build the image:
+```bash
+docker build -t motivational-quotes .
+```
+
+Run without API key (uses fallback quotes):
+```bash
+docker run --rm motivational-quotes
+```
+
+Run with API key from your environment:
+```bash
+docker run --rm -e OPENAI_API_KEY motivational-quotes
+```
 
 ---
 
