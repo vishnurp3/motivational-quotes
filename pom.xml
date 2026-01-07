@@ -77,7 +77,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
-                    <mainClass>com.vishnu.quote.App</mainClass>
+                    <mainClass>com.vishnu.quote.app.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
