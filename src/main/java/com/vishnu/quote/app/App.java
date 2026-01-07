@@ -11,14 +11,19 @@ import com.vishnu.quote.infrastructure.openai.OpenAiResponsesTextClient;
 public final class App {
 
     public static void main(String[] args) {
-        var openAiClient = OpenAiClientFactory.fromEnvironment();
-        AiTextClient aiTextClient = new OpenAiResponsesTextClient(
-                openAiClient, ChatModel.GPT_4_1_MINI, 0.9, 60
-        );
+        QuoteGenerator generator;
+        try {
+            var openAiClient = OpenAiClientFactory.fromEnvironment();
+            AiTextClient aiTextClient = new OpenAiResponsesTextClient(
+                    openAiClient, ChatModel.GPT_4_1_MINI, 0.9, 60
+            );
+            generator = QuoteGenerators.aiWithClasspathFallback(
+                    aiTextClient, "quotes.txt"
+            );
+        } catch (Exception e) {
+            generator = QuoteGenerators.classpathOnly("quotes.txt");
+        }
 
-        QuoteGenerator generator = QuoteGenerators.aiWithClasspathFallback(
-                aiTextClient, "quotes.txt"
-        );
         QuoteService service = new QuoteService(generator);
 
         System.out.println(service.randomMotivationalQuote());
