@@ -20,6 +20,7 @@ public final class QuoteGenerators {
     }
 
     public static QuoteGenerator classpathOnly(String resourceName) {
+        Objects.requireNonNull(resourceName, "resourceName");
         return new RepositoryMotivationalQuoteGenerator(new ClasspathQuoteRepository(resourceName));
     }
 
